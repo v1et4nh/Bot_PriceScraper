@@ -79,7 +79,8 @@ def get_pricetrigger(name):
 
 def get_flaschenpost_price(name, url):
     os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
-    driver = webdriver.Firefox(service_log_path="C:\\Users\\Viet Anh\\PycharmProjects\\TelegramBot_PriceScraper\\geckodriver.log")
+    service_log_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver.log")
+    driver = webdriver.Firefox(service_log_path=service_log_path)
     driver.get(url)
     wait = WebDriverWait(driver, 10)
     zipcode_input = wait.until(EC.presence_of_element_located((By.ID, "validZipcode")))
