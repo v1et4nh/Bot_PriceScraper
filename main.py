@@ -19,8 +19,8 @@ bot_chatID = str(os.getenv('TELEGRAM_BOT_CHATID'))  # Replace with your own bot_
 
 def whatsapp_bot_sendtext(bot_message):
     client = Client()
-    from_number = 'whatsapp:+14155238886'
-    to_number   = 'whatsapp:' + str(os.getenv('MY_PHONE_NUMBER'))
+    from_number = 'whatsapp:' + str(os.getenv('TWILIO_PHONE_NUMBER'))  # Replace with your own twilio number
+    to_number   = 'whatsapp:' + str(os.getenv('MY_PHONE_NUMBER'))      # Replace with your own phone number
     client.messages.create(body=bot_message,
                            from_=from_number,
                            to=to_number)
