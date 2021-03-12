@@ -1,1 +1,1 @@
-"C:\Users\Viet Anh\PycharmProjects\TelegramBot\venv\Scripts\python.exe" "C:\Users\Viet Anh\PycharmProjects\TelegramBot\main.py"
+"C:\Users\Viet Anh\PycharmProjects\TelegramBot_PriceScraper\venv\Scripts\python.exe" "C:\Users\Viet Anh\PycharmProjects\TelegramBot_PriceScraper\main.py"

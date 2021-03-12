@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import requests
 import pathlib
 import os
+import numpy as np
 from datetime import datetime
 from time import sleep
 from selenium import webdriver
@@ -8,7 +11,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
-from bs4 import BeautifulSoup
 
 bot_token = '1698488378:AAF7ljXq4ikA-nUBNvP7ogATeS9txUw0gYc'
 bot_chatID = '383615621'
@@ -54,38 +56,53 @@ def get_latest_screenshot():
     return list_dir[-1]
 
 
-def get_flaschenpost_price(url):
+def get_pricetrigger(name):
+    pricetrigger = 10000
+    if name == 'Volvic':
+        pricetrigger = 6
+    elif name == 'Spezi':
+        pricetrigger = 10
+    elif name == 'FritzKola':
+        pricetrigger = 18
+    return pricetrigger
+
+
+def get_flaschenpost_price(name, url):
     os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
-    driver = webdriver.Firefox(service_log_path="C:\\Users\\Viet Anh\\PycharmProjects\\TelegramBot\\geckodriver.log")
+    driver = webdriver.Firefox(service_log_path="C:\\Users\\Viet Anh\\PycharmProjects\\TelegramBot_PriceScraper\\geckodriver.log")
     driver.get(url)
     wait = WebDriverWait(driver, 10)
     zipcode_input = wait.until(EC.presence_of_element_located((By.ID, "validZipcode")))
     sleep(1)
     zipcode_input.send_keys('80807')
+    sleep(1)
     driver.find_element_by_class_name("fp-button").click()
+    sleep(1)
+
     try:
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_price")))
         pricedict = driver.find_elements_by_class_name("fp_article_price")
 
         for price_idx in range(len(pricedict)):
             current_price = pricedict[price_idx].text
-            current_price.replace('€', '').strip()
-            current_price.replace(',', '.').strip()
-            # if float(current_price) < 5:
-            if True:
+            current_price = current_price.replace('€', '').strip()
+            current_price = current_price.replace(',', '.').strip()
+            pricetrigger = get_pricetrigger(name)
+            if float(current_price) <= pricetrigger:
                 # Make screenshot
                 str_fpath = get_savepath()
                 driver.save_screenshot(str_fpath)
-                telegram_bot_sendtext('Neuer Preis')
+                str_message = name + ': ' + str(current_price) + '€'
+                telegram_bot_sendtext(str_message)
                 telegram_bot_sendphoto(str_fpath)
                 break
-    except Exception:
+    except:
         try:
             str_avail = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_outOfStock")))
-            telegram_bot_sendtext(str_avail.text)
-            str_fpath = get_savepath()
-            driver.save_screenshot(str_fpath)
-            telegram_bot_sendphoto(str_fpath)
+            # telegram_bot_sendtext(str_avail.text)
+            # str_fpath = get_savepath()
+            # driver.save_screenshot(str_fpath)
+            # telegram_bot_sendphoto(str_fpath)
         except TimeoutException as e:
             telegram_bot_sendtext(e)
 
@@ -94,7 +111,17 @@ def get_flaschenpost_price(url):
 
 if __name__ == "__main__":
     # Web Scraping
-    url = 'https://www.flaschenpost.de/volvic/volvic-naturelle'
-    # url = 'https://www.flaschenpost.de/aera/aerastill'
-    get_flaschenpost_price(url)
-    print("xD")
+    name_list = []
+    url_list  = []
+    name_list.append('Volvic')
+    url_list.append('https://www.flaschenpost.de/volvic/volvic-naturelle')
+    name_list.append('Spezi')
+    url_list.append('https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi')
+    name_list.append('FritzKola')
+    url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
+
+    fulllist = np.stack((name_list, url_list), axis=1)
+    for name, url in fulllist:
+        get_flaschenpost_price(name, url)
+
+    print('Wieder mal gescraped xD')
