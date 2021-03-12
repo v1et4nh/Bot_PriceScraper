@@ -1,0 +1,1 @@
+"C:\Users\Viet Anh\PycharmProjects\TelegramBot\venv\Scripts\python.exe" "C:\Users\Viet Anh\PycharmProjects\TelegramBot\main.py"
