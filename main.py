@@ -11,9 +11,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from twilio.rest import Client
 
-bot_token = '1698488378:AAF7ljXq4ikA-nUBNvP7ogATeS9txUw0gYc'
-bot_chatID = '383615621'
+bot_token = str(os.getenv('TELEGRAM_BOT_TOKEN'))    # Replace with your own bot_token
+bot_chatID = str(os.getenv('TELEGRAM_BOT_CHATID'))  # Replace with your own bot_chatID
+
+
+def whatsapp_bot_sendtext(bot_message):
+    client = Client()
+    from_number = 'whatsapp:+14155238886'
+    to_number   = 'whatsapp:' + str(os.getenv('MY_PHONE_NUMBER'))
+    client.messages.create(body=bot_message,
+                           from_=from_number,
+                           to=to_number)
 
 
 def telegram_bot_sendtext(bot_message):
@@ -92,7 +102,8 @@ def get_flaschenpost_price(name, url):
                 # Make screenshot
                 str_fpath = get_savepath()
                 driver.save_screenshot(str_fpath)
-                str_message = name + ': ' + str(current_price) + '€'
+                str_message = name + ': ' + str(current_price) + '€\n' + url
+                whatsapp_bot_sendtext(str_message)
                 telegram_bot_sendtext(str_message)
                 telegram_bot_sendphoto(str_fpath)
                 break
