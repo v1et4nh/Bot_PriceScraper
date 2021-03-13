@@ -69,7 +69,7 @@ def get_latest_screenshot():
 def get_pricetrigger(name):
     pricetrigger = 10000
     if name == 'Volvic':
-        pricetrigger = 6
+        pricetrigger = 5
     elif name == 'Spezi':
         pricetrigger = 10
     elif name == 'FritzKola':
