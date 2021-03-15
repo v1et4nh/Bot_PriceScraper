@@ -17,13 +17,13 @@ bot_token = str(os.getenv('TELEGRAM_BOT_TOKEN'))    # Replace with your own bot_
 bot_chatID = str(os.getenv('TELEGRAM_BOT_CHATID'))  # Replace with your own bot_chatID
 
 
-def whatsapp_bot_sendtext(bot_message):
-    client = Client()
-    from_number = 'whatsapp:' + str(os.getenv('TWILIO_PHONE_NUMBER'))  # Replace with your own twilio number
-    to_number   = 'whatsapp:' + str(os.getenv('MY_PHONE_NUMBER'))      # Replace with your own phone number
-    client.messages.create(body=bot_message,
-                           from_=from_number,
-                           to=to_number)
+# def whatsapp_bot_sendtext(bot_message):
+#     client = Client()
+#     from_number = 'whatsapp:' + str(os.getenv('TWILIO_PHONE_NUMBER'))  # Replace with your own twilio number
+#     to_number   = 'whatsapp:' + str(os.getenv('MY_PHONE_NUMBER'))      # Replace with your own phone number
+#     client.messages.create(body=bot_message,
+#                            from_=from_number,
+#                            to=to_number)
 
 
 def telegram_bot_sendtext(bot_message):
@@ -104,7 +104,7 @@ def get_flaschenpost_price(name, url):
                 str_fpath = get_savepath()
                 driver.save_screenshot(str_fpath)
                 str_message = name + ': ' + str(current_price) + '€\n' + url
-                whatsapp_bot_sendtext(str_message)
+                # whatsapp_bot_sendtext(str_message)
                 telegram_bot_sendtext(str_message)
                 telegram_bot_sendphoto(str_fpath)
                 break
