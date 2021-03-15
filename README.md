@@ -50,7 +50,6 @@ a certain price.
 So this is what I am doing:
 * Use Selenium to navigate through the website and scrape the price
 * Use Telegram Api to be able to send messages and even images
-* Optional: Use WhatsApp Api to send messages
 
 <!-- GETTING STARTED -->
 ## Getting Started
