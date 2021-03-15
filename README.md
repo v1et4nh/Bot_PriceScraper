@@ -5,11 +5,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/v1et4nh/PriceScraper-WhatsApp-Telegram-Bot">
+  <a href="https://github.com/v1et4nh/PriceScraper-Telegram-Bot">
     <img src="images/bot-logo.png" alt="Bot-Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">PriceScraper-WhatsApp-Telegram-Bot</h3>
+  <h3 align="center">PriceScraper-Telegram-Bot</h3>
 
   <p align="center">
     A pricescraper for <a href="https://www.flaschenpost.de">flaschenpost.de</a>
@@ -70,7 +70,7 @@ tbd
 1. tbd
 2. Clone the repo
    ```sh
-   git clone https://github.com/v1et4nh/PriceScraper-WhatsApp-Telegram-Bot
+   git clone https://github.com/v1et4nh/PriceScraper-Telegram-Bot
    ```
 3. tbd
    ```sh
@@ -91,7 +91,7 @@ tbd
 
 Viet Anh Le Cong - [@linkedin](https://linkedin.com/in/viet-anh-le-cong) - hello@v1et4nh.de
 
-Project Link: [https://github.com/v1et4nh/PriceScraper-WhatsApp-Telegram-Bot](https://github.com/v1et4nh/PriceScraper-WhatsApp-Telegram-Bot)
+Project Link: [https://github.com/v1et4nh/PriceScraper-Telegram-Bot](https://github.com/v1et4nh/PriceScraper-Telegram-Bot)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
