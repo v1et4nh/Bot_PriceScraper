@@ -62,6 +62,9 @@ And here are my steps:
 <!-- GETTING STARTED -->
 ## Getting Started
 So before we jump in, we first need to configure our Telegram Client or Bot...
+1. Obviously you need a Telegram Account, so get the app and register
+2. Once you've installed the app, search for `BotFather`: <br>
+<img src="images/BotFather.png" alt="BotFather" width="383" height="323">
 
 ### Telegram Bot Configuration
 
