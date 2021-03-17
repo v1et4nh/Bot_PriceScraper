@@ -62,13 +62,25 @@ And here are my steps:
 <!-- GETTING STARTED -->
 ## Getting Started
 So before we jump in, we first need to configure our Telegram Client or Bot...
-1. Obviously you need a Telegram Account, so get the app and register
-2. Once you've installed the app, search for `BotFather`: <br>
-<p align="center"><img src="images/BotFather.png" alt="BotFather" width="383" height="323"></p>
-
 
 ### Telegram Bot Configuration
+* Obviously you need a Telegram Account, so get the app and create a new account
+* Once you've installed the app and logged in, you need to create your own bot. For that search for `@BotFather`: <br>
+<p align="center"><img src="images/BotFather.png" alt="BotFather" width="383" height="323"></p>
 
+#### Create new Bot and get `bot_token`
+* Send him a "/start" message or press the Start Button and create a new bot by sending "/newbot"
+* Follow the instructions (username, botname)
+* Be sure to save the API Token ("Use this token to access the HTTP API"), which will be needed later, that's your `bot_token`
+
+#### Get `bot_chatID`
+* Now search for your bot (the username you just created) in your telegram app
+* Send "/start" or press the Start Button
+* Open a new tab and enter `https://api.telegram.org/bot<yourtoken>/getUpdates`
+* Replace `yourtoken` with the `bot_token`
+* Assume the `bot_token` = 123abc456, then the address would be: `https://api.telegram.org/bot123abc456/getUpdates`
+* You will see a json-like format. Look for `"id"`. Thats your `bot_chatID` <br>
+Note: You will only see the ID once you send your bot the "/start" message
 
 ### Virtual Environment
 * Create a virtual environment
