@@ -14,7 +14,7 @@
   <p align="center">
     A pricescraper for <a href="https://www.flaschenpost.de">flaschenpost.de</a>
     <br />
-    Price alert send via WhatsApp and Telegram
+    Price alert send via Telegram
     <br />
     <br />
   </p>
@@ -42,9 +42,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## What is the Project about and why?
-Because I am super lazy I use the service of beverage delivery directly to my door. <br>
-There is only one company in my region: The german www.flaschenpost.de (No Affiliate-Link :P) <br>
-Sometimes it's even cheaper to order on their website than buying in the supermarket. <br>
+Because I am super lazy I use the service of beverage delivery directly to my door. 
+There is only one company in my region: The german www.flaschenpost.de (No Affiliate-Link :P) 
+Sometimes it's even cheaper to order on their website than buying in the supermarket. 
 But as I already mentioned, I am super lazy and I also don't really want to look up for their super deals all the time.. <br>
 
 That's why I started this little project to save my valuable time (and maybe to also improve my programming skills. Nice!).
