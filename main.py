@@ -11,19 +11,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
-from twilio.rest import Client
+from dotenv import load_dotenv
 
+# Load environment variables
+load_dotenv()
 bot_token = str(os.getenv('TELEGRAM_BOT_TOKEN'))    # Replace with your own bot_token
 bot_chatID = str(os.getenv('TELEGRAM_BOT_CHATID'))  # Replace with your own bot_chatID
-
-
-# def whatsapp_bot_sendtext(bot_message):
-#     client = Client()
-#     from_number = 'whatsapp:' + str(os.getenv('TWILIO_PHONE_NUMBER'))  # Replace with your own twilio number
-#     to_number   = 'whatsapp:' + str(os.getenv('MY_PHONE_NUMBER'))      # Replace with your own phone number
-#     client.messages.create(body=bot_message,
-#                            from_=from_number,
-#                            to=to_number)
 
 
 def telegram_bot_sendtext(bot_message):
@@ -96,6 +89,7 @@ def get_flaschenpost_price(name, url):
 
         for price_idx in range(len(pricedict)):
             current_price = pricedict[price_idx].text
+            print(name + ': ' + current_price)
             current_price = current_price.replace('€', '').strip()
             current_price = current_price.replace(',', '.').strip()
             pricetrigger = get_pricetrigger(name)
@@ -104,19 +98,15 @@ def get_flaschenpost_price(name, url):
                 str_fpath = get_savepath()
                 driver.save_screenshot(str_fpath)
                 str_message = name + ': ' + str(current_price) + '€\n' + url
-                # whatsapp_bot_sendtext(str_message)
                 telegram_bot_sendtext(str_message)
                 telegram_bot_sendphoto(str_fpath)
                 break
     except:
         try:
             str_avail = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_outOfStock")))
-            # telegram_bot_sendtext(str_avail.text)
-            # str_fpath = get_savepath()
-            # driver.save_screenshot(str_fpath)
-            # telegram_bot_sendphoto(str_fpath)
+            print(name + ': Out of Stock')
         except TimeoutException as e:
-            telegram_bot_sendtext(e)
+            telegram_bot_sendtext(str(e))
 
     driver.quit()
 
@@ -132,8 +122,8 @@ if __name__ == "__main__":
     name_list.append('FritzKola')
     url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
 
-    fulllist = np.stack((name_list, url_list), axis=1)
-    for name, url in fulllist:
+    full_list = np.stack((name_list, url_list), axis=1)
+    for name, url in full_list:
         get_flaschenpost_price(name, url)
 
-    print('Wieder mal gescraped xD')
+    print('Finished scraping')
