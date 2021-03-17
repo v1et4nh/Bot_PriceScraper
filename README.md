@@ -25,13 +25,13 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#What is the Project about and why?">What is the Project about and why?</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#Telegram Bot Configuration">Telegram Bot Configuration</a></li>
+        <li><a href="#Virtual Environment">Virtual Environment</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -41,28 +41,51 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-I wanted to track some beverages on the german website www.flaschenpost.de
+## What is the Project about and why?
+Because I am super lazy I use the service of beverage delivery directly to my door. <br>
+There is only one company in my region: The german www.flaschenpost.de (No Affiliate-Link :P) <br>
+Sometimes it's even cheaper to order on their website than buying in the supermarket. <br>
+But as I already mentioned, I am super lazy and I also don't really want to look up for their super deals all the time.. <br>
 
-My idea was to track the price every hour and send me a notification on whatsapp or telegram once the price falls below
-a certain price.
+That's why I started this little project to save my valuable time (and maybe to also improve my programming skills. Nice!).
 
-So this is what I am doing:
-* Use Selenium to navigate through the website and scrape the price
-* Use Telegram Api to be able to send messages and even images
+Here is my idea:
+* Get the price with a webscraper
+* If the price falls below a certain amount, then send me a message on telegram
+
+And here are my steps:
+* Use Python because it's easy
+* Use Selenium to navigate through the website and get the price
+* Use Telegram API to send messages and images
 
 <!-- GETTING STARTED -->
 ## Getting Started
+So before we jump in, we first need to configure our Telegram Client or Bot...
 
-Lorem ipsum
+### Telegram Bot Configuration
 
-### Prerequisites
 
-tbd
-* requirements
-  ```sh
-  pip install -r requirements.txt
-  ```
+### Virtual Environment
+* Create a virtual environment
+    ```sh
+    $ virtualenv venv
+    ```
+* Activate the new created virtual environment `venv`
+    ```sh
+    # Windows (CMD.exe)
+    $ venv\Scripts\activate.bat
+    # Unix
+    $ source venv//bin/activate
+    ```
+* If the virtual environment is activated correctly, your console should look like this:
+    ```sh
+    $ (venv)  
+    ```
+* Install the required dependencies for this project
+    ```sh
+    $ (venv) pip install -r requirements.txt
+    ```
+ 
 
 ### Installation
 
