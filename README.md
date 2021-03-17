@@ -50,8 +50,9 @@ That's why I started this little project to save my valuable time
 (and maybe to also improve my programming skills. Nice!).
 
 Here is my idea:
-* Get the price with a webscraper
-* If the price falls below a certain amount, then send me a message on telegram
+* Get the price from www.flaschenpost.de with a webscraper
+* If the price falls below a certain amount -> send me a message on telegram
+* Message content: Beverage + Price + Url (+ Screenshot of the current page)
 
 And here are my steps:
 * Use Python because it's easy
