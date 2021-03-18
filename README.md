@@ -129,7 +129,7 @@ This chapter is optional but still highly recommended to keep your projects tidy
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-Once everything is set up, you can just run the script and see what happens. 
+
 * If you want to unhide your browser, change the parameter `background` to False:
     ```python
     for name, url in full_list:
@@ -162,6 +162,8 @@ Once everything is set up, you can just run the script and see what happens.
     ```python
     zipcode_input.send_keys(os.getenv('ZIPCODE'))
     ```
+  
+Once everything is set up, you can just run the script and see what happens. 
 
 <!-- CONTACT -->
 ## Contact
