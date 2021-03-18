@@ -118,7 +118,7 @@ This chapter is optional but still highly recommended to keep your projects tidy
    TELEGRAM_BOT_TOKEN  = <yourtoken>
    TELEGRAM_BOT_CHATID = <yourchatID>
    ```
-   This way you can hide your token and ids. <br>
+   This way you can hide your token and id. <br>
    Otherwise, if you don't intend to share your code, you can also just insert your `bot_token` and `bot_chatID` directly in the `main.py`-sourcecode:
    ```python
    16 # Load environment variables
