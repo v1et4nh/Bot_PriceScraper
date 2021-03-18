@@ -25,7 +25,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#what-is-the-project-about-and-why?">What is the Project about and why?</a>
+      <a href="#what-is-the-project-about-and-why">What is the Project about and why?</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
