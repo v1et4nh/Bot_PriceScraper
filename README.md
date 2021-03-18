@@ -1,6 +1,6 @@
 <!-- Template: https://github.com/othneildrew/Best-README-Template -->
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] [![Github][github-shield]][github-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -180,7 +180,7 @@ tbd; Stay tuned
 
 <!-- CONTACT -->
 # Contact
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] [![Github][github-shield]][github-url]
 
 Please share your thoughts and connect with me on [linkedin](https://linkedin.com/in/viet-anh-le-cong) 
 
@@ -194,5 +194,7 @@ Project Link: [https://github.com/v1et4nh/PriceScraper-Telegram-Bot](https://git
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[github-shield]: https://img.shields.io/github/followers/v1et4nh?label=Github&style=for-the-badge
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[github-url]: https://github.com/v1et4nh
 [linkedin-url]: https://linkedin.com/in/viet-anh-le-cong
