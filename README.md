@@ -47,9 +47,9 @@
 Because I am super lazy I use the service of beverage delivery directly to my door. 
 There is only one company in my region: The german www.flaschenpost.de (No Affiliate-Link :P) 
 Sometimes it's even cheaper to order on their website than buying in the supermarket. 
-But as I already mentioned, I am super lazy and I also don't really want to look up for their super deals all the time..
+But as I already mentioned, I am super lazy and I also don't really want to look up for their super deals all over again..
 That's why I started this little project to save my valuable time 
-(and maybe to also improve my programming skills. Nice!).
+(and maybe also to improve my programming skills. Nice!).
 
 Here is my idea:
 * Get the price from www.flaschenpost.de with a webscraper
