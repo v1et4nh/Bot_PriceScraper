@@ -58,7 +58,7 @@ Here is my idea:
 And here are my steps:
 * Use Python because it's easy
 * Use Selenium to navigate through the website and get the price
-* Use Telegram API to send messages and images
+* Use Telegram API to send me messages and images
 
 <!-- GETTING STARTED -->
 # Getting Started
