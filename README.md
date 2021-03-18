@@ -185,6 +185,9 @@ $ pip install -r requirements.txt
   For testing purpose, set your pricetrigger to a high value to receive an alert.
 
 Once everything is set up, you can just run the script and see what happens. <br>
+```shell script
+$ (venv) python main.py
+```
 
 <!-- Describe how to send messages regularly -->
 ## Running the script regularly
