@@ -88,29 +88,29 @@ That's it for now. Keep both your `bot_token` and `bot_chatID` ready for later :
 ## Virtual Environment
 This chapter is optional but still highly recommended to keep your projects tidy.
 * Create a new virtual environment
-    ```sh
+    ```shell script
     $ virtualenv venv
     ```
 * Activate the new created virtual environment `venv`
-    ```sh
+    ```shell script
     # Windows
     $ venv\Scripts\activate.bat
     # Unix
     $ source venv//bin/activate
     ```
 * If the virtual environment is activated correctly, your console should look like this:
-    ```sh
+    ```shell script
     $ (venv)  
     ```
 * Install the required dependencies for this project
-    ```sh
+    ```shell script
     $ (venv) pip install -r requirements.txt
     ```
  
 ## Installation
 
 1. Now we are ready to clone the repo
-   ```sh
+   ```shell script
    git clone https://github.com/v1et4nh/PriceScraper-Telegram-Bot
    ```
 2. I highly recommend to create a `.env`-file to store your `bot_token` and `bot_chatID` in there:
@@ -120,7 +120,7 @@ This chapter is optional but still highly recommended to keep your projects tidy
    ```
    This way you can hide your token and ids. <br>
    Otherwise, if you don't intend to share your code, you can also just insert your `bot_token` and `bot_chatID` directly in the `main.py`-sourcecode:
-   ```.pydocstring
+   ```python
    16 # Load environment variables
    17 load_dotenv()
    18 bot_token  = <yourtoken>    # Replace with your own bot_token
@@ -131,7 +131,7 @@ This chapter is optional but still highly recommended to keep your projects tidy
 ## Usage
 Once everything is set up, you can just run the script and see what happens. 
 * If you want to hide your browser, just uncomment this line:
-```.pydocstring
+```.python
 # os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
 ```
 * Adjust the links and the name in `if __name__ == "__main__"` to your personal preferences:
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
 ```
 * Adjust your zipcode in `get_flaschenpost_price`-function or add it to your `.env`-file:
-```pydocstring
+```python
     zipcode_input.send_keys(os.getenv('ZIPCODE'))
 ```
 
