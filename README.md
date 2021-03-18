@@ -1,6 +1,9 @@
 <!-- Template: https://github.com/othneildrew/Best-README-Template -->
 
-[![LinkedIn][linkedin-shield]][linkedin-url] [![Github][github-shield]][github-url] [![Youtube][youtube-shield]][youtube-url]
+<!-- Badges -->
+<p align='center'>
+
+</p>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -17,6 +20,9 @@
     Price alert send via Telegram
     <br />
     <br />
+    <a target="_blank"href="https://linkedin.com/in/viet-anh-le-cong"><img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555&logoColor=blue" /></a>
+    <a target="_blank"href="https://github.com/v1et4nh"><img src="https://img.shields.io/github/followers/v1et4nh?label=Github&style=for-the-badge" /></a>
+    <a target="_blank"href="https://www.youtube.com/channel/UC7PMQLO9HIZ5zEogOkHp8yw"><img src="https://img.shields.io/endpoint?color=red&label=Youtube&logoColor=red&style=for-the-badge&url=https%3A%2F%2Fyoutube-channel-badge-v1.vercel.app%2Fapi%2Fsubscriber" /></a>
   </p>
 </p>
 
