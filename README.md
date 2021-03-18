@@ -131,26 +131,26 @@ This chapter is optional but still highly recommended to keep your projects tidy
 ## Usage
 Once everything is set up, you can just run the script and see what happens. 
 * If you want to hide your browser, just uncomment this line:
-```.python
-# os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
-```
+    ```python
+    # os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
+    ```
 * Adjust the links and the name in `if __name__ == "__main__"` to your personal preferences:
-```python
-if __name__ == "__main__":
-    # Web Scraping
-    name_list = []
-    url_list  = []
-    name_list.append('Volvic')
-    url_list.append('https://www.flaschenpost.de/volvic/volvic-naturelle')
-    name_list.append('Spezi')
-    url_list.append('https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi')
-    name_list.append('FritzKola')
-    url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
-```
+    ```python
+    if __name__ == "__main__":
+        # Web Scraping
+        name_list = []
+        url_list  = []
+        name_list.append('Volvic')
+        url_list.append('https://www.flaschenpost.de/volvic/volvic-naturelle')
+        name_list.append('Spezi')
+        url_list.append('https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi')
+        name_list.append('FritzKola')
+        url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
+    ```
 * Adjust your zipcode in `get_flaschenpost_price`-function or add it to your `.env`-file:
-```python
-    zipcode_input.send_keys(os.getenv('ZIPCODE'))
-```
+    ```python
+        zipcode_input.send_keys(os.getenv('ZIPCODE'))
+    ```
 
 <!-- CONTACT -->
 ## Contact
