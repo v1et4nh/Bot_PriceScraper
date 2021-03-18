@@ -72,7 +72,7 @@ So before we jump in, we first need to configure our Telegram Client or Bot...
 
 ### Create new Bot and get `bot_token`
 * Send him a "/start" message or press the Start Button and create a new bot by sending "/newbot"
-* Follow the instructions (username, botname)
+* Follow the instructions to define a username (which will be displayed in your app) and a unique botname
 * Be sure to save the API Token ("Use this token to access the HTTP API"), which will be needed later, that's your `bot_token`
 
 ### Get `bot_chatID`
