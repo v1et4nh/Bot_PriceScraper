@@ -149,18 +149,18 @@ Once everything is set up, you can just run the script and see what happens.
     ```
 * Adjust your zipcode in `get_flaschenpost_price`-function:
     ```python
-        zipcode_input.send_keys('48151')
+    zipcode_input.send_keys('48151')
     ```
-*  or add it to your `.env`-file:
-   ```.env
-   TELEGRAM_BOT_TOKEN  = <yourtoken>
-   TELEGRAM_BOT_CHATID = <yourchatID>
-   ZIPCODE             = 48151
-   ```
-   and use this line of code:
-   ```python
-        zipcode_input.send_keys(os.getenv('ZIPCODE'))
-   ```
+  or add it to your `.env`-file:
+    ```.env
+    TELEGRAM_BOT_TOKEN  = <yourtoken>
+    TELEGRAM_BOT_CHATID = <yourchatID>
+    ZIPCODE             = 48151
+    ```
+  and use this line of code:
+    ```python
+    zipcode_input.send_keys(os.getenv('ZIPCODE'))
+    ```
 
 <!-- CONTACT -->
 ## Contact
