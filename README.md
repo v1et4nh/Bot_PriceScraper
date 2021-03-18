@@ -25,17 +25,19 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#What is the Project about and why?">What is the Project about and why?</a>
+      <a href="#what-is-the-project-about-and-why?">What is the Project about and why?</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#Telegram Bot Configuration">Telegram Bot Configuration</a></li>
-        <li><a href="#Virtual Environment">Virtual Environment</a></li>
+        <li><a href="#telegram-bot-configuration">Telegram Bot Configuration</a></li>
+        <li><a href="#virtual-environment">Virtual Environment</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#sources">Sources</a></li>
   </ol>
 </details>
 
