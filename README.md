@@ -109,11 +109,11 @@ This chapter is optional but still highly recommended to keep your projects tidy
  
 ## Installation
 
-1. Now we are ready to clone the repo
+* Now we are ready to clone the repo
    ```shell script
    git clone https://github.com/v1et4nh/PriceScraper-Telegram-Bot
    ```
-2. I highly recommend to create a `.env`-file to store your `bot_token` and `bot_chatID` in there:
+* I highly recommend to create a `.env`-file to store your `bot_token` and `bot_chatID` in there:
    ```.env
    TELEGRAM_BOT_TOKEN  = <yourtoken>
    TELEGRAM_BOT_CHATID = <yourchatID>
