@@ -12,9 +12,9 @@
 
   <p align="center">
     A pricescraper for <a href="https://www.flaschenpost.de">flaschenpost.de</a>
-    <br />
+    <br>
     Price alert send via Telegram
-    <br />
+    <br><br>
     <img src="https://visitor-badge.glitch.me/badge?page_id=v1et4nh.pricescraper-telegram-bot"/><br><br>
     <a target="_blank"href="https://linkedin.com/in/viet-anh-le-cong"><img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555&logoColor=blue" /></a>
     <a target="_blank"href="https://github.com/v1et4nh"><img src="https://img.shields.io/github/followers/v1et4nh?label=Github&style=for-the-badge" /></a>
