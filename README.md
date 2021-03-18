@@ -85,8 +85,13 @@ So before we jump in, we first need to configure our Telegram Client or Bot...
 Note: You will only see the ID once you send your bot the "/start" message <br> <br>
 That's it for now. Keep both your `bot_token` and `bot_chatID` ready for later :)
 
-## Virtual Environment
-This chapter is optional but still highly recommended to keep your projects tidy.
+## Installation
+### Clone the repo
+   ```shell script
+   git clone https://github.com/v1et4nh/PriceScraper-Telegram-Bot
+   ```
+### Virtual Environment
+This chapter is optional but I highly recommend to use it in order to keep your projects tidy.
 * Create a new virtual environment
     ```shell script
     $ virtualenv venv
@@ -102,40 +107,56 @@ This chapter is optional but still highly recommended to keep your projects tidy
     ```shell script
     $ (venv)  
     ```
-* Install the required dependencies for this project
-    ```shell script
-    $ (venv) pip install -r requirements.txt
-    ```
+
+### Dependencies
+Install the required dependencies for this project
+```shell script
+# Virtual environment
+$ (venv) pip install -r requirements.txt
+  
+# Without virtual environment
+$ pip install -r requirements.txt
+```
  
-## Installation
-
-* Now we are ready to clone the repo
-   ```shell script
-   git clone https://github.com/v1et4nh/PriceScraper-Telegram-Bot
-   ```
+# Configuration and Usage
 * I highly recommend to create a `.env`-file to store your `bot_token` and `bot_chatID` in there:
-   ```.env
-   TELEGRAM_BOT_TOKEN  = <yourtoken>
-   TELEGRAM_BOT_CHATID = <yourchatID>
-   ```
-   This way you can hide your token and id. <br>
-   Otherwise, if you don't intend to share your code, you can also just insert your `bot_token` and `bot_chatID` directly in the `main.py`-sourcecode:
-   ```python
-   16 # Load environment variables
-   17 load_dotenv()
-   18 bot_token  = <yourtoken>    # Replace with your own bot_token
-   19 bot_chatID = <yourchatID>   # Replace with your own bot_chatID
-   ```
+    ```.env
+    TELEGRAM_BOT_TOKEN  = <yourtoken>
+    TELEGRAM_BOT_CHATID = <yourchatID>
+    ```
+    In this way, sensitive information like your token and ID can be hidden, 
+    so no one has access to it if you intend to share your project on github. <br>
+    Just add the `.env`-file to your `.gitignore` and it won't be considered by git. <br>
+    Otherwise, if you only use this locally, you can also just insert your `bot_token` and `bot_chatID` directly in the `main.py`-sourcecode:
+    ```python
+    16 # Load environment variables
+    17 load_dotenv()
+    18 bot_token  = <yourtoken>    # Replace with your own bot_token
+    19 bot_chatID = <yourchatID>   # Replace with your own bot_chatID
+    ```
 
-<!-- USAGE EXAMPLES -->
-## Usage
+* Adjust the zipcode in `get_flaschenpost_price`-function:
+    ```python
+    zipcode_input.send_keys('48151')  # 48151 is an example
+    ```
+  or add it to your `.env`-file:
+    ```.env
+    TELEGRAM_BOT_TOKEN  = <yourtoken>
+    TELEGRAM_BOT_CHATID = <yourchatID>
+    ZIPCODE             = 48151
+    ```
+  and use this line of code instead:
+    ```python
+    zipcode_input.send_keys(os.getenv('ZIPCODE'))
+    ```
 
-* If you want to unhide your browser, change the parameter `background` to False:
+* If you want to unhide your browser while running, change the parameter `background` to False:
     ```python
     for name, url in full_list:
         get_flaschenpost_price(name, url, background=False)
     ```
-* Adjust the links and the name in `if __name__ == "__main__"` to your personal preferences:
+
+* Adjust the links and the names in `if __name__ == "__main__"` to your personal preferences:
     ```python
     if __name__ == "__main__":
         # Web Scraping
@@ -148,21 +169,7 @@ This chapter is optional but still highly recommended to keep your projects tidy
         name_list.append('FritzKola')
         url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
     ```
-* Adjust your zipcode in `get_flaschenpost_price`-function:
-    ```python
-    zipcode_input.send_keys('48151')
-    ```
-  or add it to your `.env`-file:
-    ```.env
-    TELEGRAM_BOT_TOKEN  = <yourtoken>
-    TELEGRAM_BOT_CHATID = <yourchatID>
-    ZIPCODE             = 48151
-    ```
-  and use this line of code:
-    ```python
-    zipcode_input.send_keys(os.getenv('ZIPCODE'))
-    ```
-  
+
 Once everything is set up, you can just run the script and see what happens. 
 
 <!-- CONTACT -->
