@@ -135,7 +135,7 @@ Once everything is set up, you can just run the script and see what happens.
 # os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
 ```
 * Adjust the links and the name in `if __name__ == "__main__"` to your personal preferences:
-```pydocstring
+```python
 if __name__ == "__main__":
     # Web Scraping
     name_list = []
