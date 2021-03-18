@@ -65,22 +65,25 @@ And here are my steps:
 So before we jump in, we first need to configure our Telegram Client or Bot...
 
 ## Telegram Bot Configuration
-* Obviously you need a Telegram Account, so get the app and create a new account
-* Once you've installed the app and logged in, you need to create your own bot. For that search for `@BotFather`: <br>
+* Obviously you need a Telegram Account, so go get the app and create a new account
+* Once you've installed the app and registered, you need to create your own bot. <br>
+  Simply search for `@BotFather`: <br>
 <p align="center"><img src="images/BotFather.png" alt="BotFather" width="383" height="323"></p>
 
 ### Create new Bot and get `bot_token`
 * Send him a "/start" message or press the Start Button and create a new bot by sending "/newbot"
 * Follow the instructions to define a username (which will be displayed in your app) and a unique botname
-* Be sure to save the API Token ("Use this token to access the HTTP API"), which will be needed later, that's your `bot_token`
+* Be sure to save the API Token (which is shown after this: "Use this token to access the HTTP API") <br>
+  That will be your `bot_token` for later
 
 ### Get `bot_chatID`
 * Now search for your bot (the username you just created) in your telegram app
-* Send "/start" or press the Start Button
+* Send a "/start" message or press the Start Button to create a chat with your bot
 * Open a new tab and enter `https://api.telegram.org/bot<yourtoken>/getUpdates`
 * Replace `yourtoken` with the `bot_token`
-* Assume the `bot_token` = 123abc456, then the address would be: <br>`https://api.telegram.org/bot123abc456/getUpdates`
-* You will see a json-like format. Look for `"id"`. Thats your `bot_chatID` <br>
+* Assume the `bot_token` = 123abc456, then the target address would look like this: <br>
+  `https://api.telegram.org/bot123abc456/getUpdates`
+* You will see a json-like format. Look for `"id"`. That is your `bot_chatID` <br>
 Note: You will only see the ID once you send your bot the "/start" message <br> <br>
 That's it for now. Keep both your `bot_token` and `bot_chatID` ready for later :)
 
@@ -91,7 +94,7 @@ That's it for now. Keep both your `bot_token` and `bot_chatID` ready for later :
    ```
 ### Virtual Environment
 This chapter is optional but I highly recommend to use it in order to keep your projects tidy.
-* Create a new virtual environment
+* Create a new virtual environment in the repo
     ```shell script
     $ virtualenv venv
     ```
@@ -99,6 +102,7 @@ This chapter is optional but I highly recommend to use it in order to keep your 
     ```shell script
     # Windows
     $ venv\Scripts\activate.bat
+  
     # Unix
     $ source venv//bin/activate
     ```
@@ -123,7 +127,7 @@ $ pip install -r requirements.txt
     TELEGRAM_BOT_TOKEN  = <yourtoken>
     TELEGRAM_BOT_CHATID = <yourchatID>
     ```
-    In this way, sensitive information like your token and ID can be hidden, 
+    In this way, sensitive information like your token or ID are hidden, 
     so no one has access to it if you intend to share your project on github. <br>
     Just add the `.env`-file to your `.gitignore` and it won't be considered by git. <br>
     Otherwise, if you only use this locally, you can also just insert your `bot_token` and `bot_chatID` directly in the `main.py`-sourcecode:
@@ -134,7 +138,7 @@ $ pip install -r requirements.txt
     18 bot_chatID = <yourchatID>   # Replace with your own bot_chatID
     ```
 
-* Adjust the zipcode in `__init__`:
+* Adjust the zipcode to your personal one in `__init__`:
     ```python
     54 self.zipcode = '48151'  # 48151 is an example
     ```
@@ -156,15 +160,15 @@ $ pip install -r requirements.txt
                      ('Spezi', 'https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi', 10),
                      ('FritzKola', 'https://www.flaschenpost.de/fritz-kola/fritz-kola', 18)]
     ```
-  If the price falls below that pricetrigger, it will send a message to your telegram account. <br>
-  For testing purposes, set your pricetrigger to a high value to definitely receive an alert.
+  If the price falls below the pricetriger, a message will be sent to your telegram account. <br>
+  For testing purposes, set your pricetrigger to a high value to definitely trigger an alert.
   
 * For testing & debug purposes unhide your browser to observe the steps made by the script by changing the parameter `run_background` to False:
     ```python
     flaschenpost = Flaschenpost(list_beverage=list_beverage, run_background=False)
     ```
 
-Once everything is set up, you can just run the script and see what happens. <br>
+Once everything is set up, you can run the script and see what happens: <br>
 ```shell script
 $ (venv) python main.py
 ```
