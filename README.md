@@ -117,7 +117,7 @@ $ (venv) pip install -r requirements.txt
 $ pip install -r requirements.txt
 ```
  
-# Configuration and Usage
+## Configuration and Usage
 * I highly recommend to create a `.env`-file to store your `bot_token` and `bot_chatID` in there:
     ```.env
     TELEGRAM_BOT_TOKEN  = <yourtoken>
@@ -185,6 +185,10 @@ $ pip install -r requirements.txt
   For testing purpose, set your pricetrigger to a high value to receive an alert.
 
 Once everything is set up, you can just run the script and see what happens. <br>
+
+<!-- Describe how to send messages regularly -->
+## Running the script regularly
+tbd; Stay tuned
 
 
 <!-- CONTACT -->
