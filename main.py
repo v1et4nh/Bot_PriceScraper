@@ -70,8 +70,9 @@ def get_pricetrigger(name):
     return pricetrigger
 
 
-def get_flaschenpost_price(name, url):
-    # os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
+def get_flaschenpost_price(name, url, background=True):
+    if background:
+        os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
     service_log_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver.log")
     driver = webdriver.Firefox(service_log_path=service_log_path)
     driver.get(url)
@@ -124,6 +125,6 @@ if __name__ == "__main__":
 
     full_list = np.stack((name_list, url_list), axis=1)
     for name, url in full_list:
-        get_flaschenpost_price(name, url)
+        get_flaschenpost_price(name, url, background=True)
 
     print('Finished scraping')

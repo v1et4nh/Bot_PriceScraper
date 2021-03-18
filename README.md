@@ -130,9 +130,10 @@ This chapter is optional but still highly recommended to keep your projects tidy
 <!-- USAGE EXAMPLES -->
 ## Usage
 Once everything is set up, you can just run the script and see what happens. 
-* If you want to hide your browser, just uncomment this line:
+* If you want to unhide your browser, change the parameter `background` to False:
     ```python
-    # os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
+    for name, url in full_list:
+        get_flaschenpost_price(name, url, background=False)
     ```
 * Adjust the links and the name in `if __name__ == "__main__"` to your personal preferences:
     ```python
