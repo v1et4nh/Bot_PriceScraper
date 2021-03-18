@@ -31,11 +31,10 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#telegram-bot-configuration">Telegram Bot Configuration</a></li>
-        <li><a href="#virtual-environment">Virtual Environment</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#configuration-and-usage">Configuration and Usage</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#sources">Sources</a></li>
   </ol>
@@ -150,7 +149,7 @@ $ pip install -r requirements.txt
     zipcode_input.send_keys(os.getenv('ZIPCODE'))
     ```
 
-* If you want to unhide your browser while running, change the parameter `background` to False:
+* For testing & debug purpose unhide your browser while running by changing the parameter `background` to False:
     ```python
     for name, url in full_list:
         get_flaschenpost_price(name, url, background=False)
@@ -170,16 +169,32 @@ $ pip install -r requirements.txt
         url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
     ```
 
-Once everything is set up, you can just run the script and see what happens. 
+* Adjust the price trigger depending on the type of beverages:
+    ```python
+    def get_pricetrigger(name):
+      pricetrigger = 10000
+      if name == 'Volvic':
+          pricetrigger = 5
+      elif name == 'Spezi':
+          pricetrigger = 10
+      elif name == 'FritzKola':
+          pricetrigger = 18
+      return pricetrigger
+    ```
+  If the price falls below that pricetrigger, it will send a message to your telegram account. <br>
+  For testing purpose, set your pricetrigger to a high value to receive an alert.
+
+Once everything is set up, you can just run the script and see what happens. <br>
+
 
 <!-- CONTACT -->
-## Contact
+# Contact
 
 Viet Anh Le Cong - [@linkedin](https://linkedin.com/in/viet-anh-le-cong) - hello@v1et4nh.de
 
 Project Link: [https://github.com/v1et4nh/PriceScraper-Telegram-Bot](https://github.com/v1et4nh/PriceScraper-Telegram-Bot)
 
-## Sources
+# Sources
 * [Medium: Man Hay Hong](https://medium.com/@ManHay_Hong/how-to-create-a-telegram-bot-and-send-messages-with-python-4cf314d9fa3e)
 * [Official Telegram Bot Homepage](https://core.telegram.org/bots)
 
