@@ -78,10 +78,7 @@ def get_flaschenpost_price(name, url):
     wait = WebDriverWait(driver, 10)
     zipcode_input = wait.until(EC.presence_of_element_located((By.ID, "validZipcode")))
     sleep(1)
-    try:
-        zipcode_input.send_keys(os.getenv('ZIPCODE'))
-    except:
-        zipcode_input.send_keys('48151')
+    zipcode_input.send_keys(os.getenv('ZIPCODE'))
     sleep(1)
     driver.find_element_by_class_name("fp-button").click()
     sleep(1)
