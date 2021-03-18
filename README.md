@@ -80,7 +80,7 @@ So before we jump in, we first need to configure our Telegram Client or Bot...
 * Send "/start" or press the Start Button
 * Open a new tab and enter `https://api.telegram.org/bot<yourtoken>/getUpdates`
 * Replace `yourtoken` with the `bot_token`
-* Assume the `bot_token` = 123abc456, then the address would be: `https://api.telegram.org/bot123abc456/getUpdates`
+* Assume the `bot_token` = 123abc456, then the address would be: <br>`https://api.telegram.org/bot123abc456/getUpdates`
 * You will see a json-like format. Look for `"id"`. Thats your `bot_chatID` <br>
 Note: You will only see the ID once you send your bot the "/start" message <br> <br>
 That's it for now. Keep both your `bot_token` and `bot_chatID` ready for later :)
