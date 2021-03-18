@@ -71,7 +71,7 @@ def get_pricetrigger(name):
 
 
 def get_flaschenpost_price(name, url):
-    os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
+    # os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
     service_log_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver.log")
     driver = webdriver.Firefox(service_log_path=service_log_path)
     driver.get(url)
