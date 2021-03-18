@@ -128,17 +128,17 @@ $ pip install -r requirements.txt
     Just add the `.env`-file to your `.gitignore` and it won't be considered by git. <br>
     Otherwise, if you only use this locally, you can also just insert your `bot_token` and `bot_chatID` directly in the `main.py`-sourcecode:
     ```python
-    16 # Load environment variables
-    17 load_dotenv()
-    18 bot_token  = <yourtoken>    # Replace with your own bot_token
-    19 bot_chatID = <yourchatID>   # Replace with your own bot_chatID
+    15 # Load environment variables
+    16 load_dotenv()
+    17 bot_token  = <yourtoken>    # Replace with your own bot_token
+    18 bot_chatID = <yourchatID>   # Replace with your own bot_chatID
     ```
 
-* Adjust the zipcode in `get_flaschenpost_price`-function:
+* Adjust the zipcode in `__init__`:
     ```python
-    zipcode_input.send_keys('48151')  # 48151 is an example
+    54 self.zipcode = '48151'  # 48151 is an example
     ```
-  or add it to your `.env`-file:
+  or add it to your `.env`-file (recommended):
     ```.env
     TELEGRAM_BOT_TOKEN  = <yourtoken>
     TELEGRAM_BOT_CHATID = <yourchatID>
@@ -146,43 +146,23 @@ $ pip install -r requirements.txt
     ```
   and use this line of code instead:
     ```python
-    zipcode_input.send_keys(os.getenv('ZIPCODE'))
+    54 self.zipcode = os.getenv('ZIPCODE')
     ```
 
-* For testing & debug purpose unhide your browser while running by changing the parameter `background` to False:
+* Adjust the names, urls and pricetrigger in `if __name__ == "__main__"` to your personal preferences:
     ```python
-    for name, url in full_list:
-        get_flaschenpost_price(name, url, background=False)
-    ```
-
-* Adjust the links and the names in `if __name__ == "__main__"` to your personal preferences:
-    ```python
-    if __name__ == "__main__":
-        # Web Scraping
-        name_list = []
-        url_list  = []
-        name_list.append('Volvic')
-        url_list.append('https://www.flaschenpost.de/volvic/volvic-naturelle')
-        name_list.append('Spezi')
-        url_list.append('https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi')
-        name_list.append('FritzKola')
-        url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
-    ```
-
-* Adjust the price trigger depending on the type of beverages:
-    ```python
-    def get_pricetrigger(name):
-      pricetrigger = 10000
-      if name == 'Volvic':
-          pricetrigger = 5
-      elif name == 'Spezi':
-          pricetrigger = 10
-      elif name == 'FritzKola':
-          pricetrigger = 18
-      return pricetrigger
+    # (name, url, pricetrigger)
+    list_beverage = [('Volvic', 'https://www.flaschenpost.de/volvic/volvic-naturelle', 5),
+                     ('Spezi', 'https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi', 10),
+                     ('FritzKola', 'https://www.flaschenpost.de/fritz-kola/fritz-kola', 18)]
     ```
   If the price falls below that pricetrigger, it will send a message to your telegram account. <br>
-  For testing purpose, set your pricetrigger to a high value to receive an alert.
+  For testing purposes, set your pricetrigger to a high value to definitely receive an alert.
+  
+* For testing & debug purposes unhide your browser to observe the steps made by the script by changing the parameter `run_background` to False:
+    ```python
+    flaschenpost = Flaschenpost(list_beverage=list_beverage, run_background=False)
+    ```
 
 Once everything is set up, you can just run the script and see what happens. <br>
 ```shell script

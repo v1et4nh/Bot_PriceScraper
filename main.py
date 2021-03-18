@@ -3,7 +3,6 @@
 import requests
 import pathlib
 import os
-import numpy as np
 from datetime import datetime
 from time import sleep
 from selenium import webdriver
@@ -32,18 +31,6 @@ def telegram_bot_sendphoto(str_picpath):
     return img_stat
 
 
-def getURL(url):
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
-        "Upgrade-Insecure-Requests": "1", "DNT": "1",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5", "Accept-Encoding": "gzip, deflate"}
-    req_url = requests.get(url=url, headers=headers)
-    req_url.raise_for_status()
-
-    return req_url
-
-
 def get_savepath():
     current_path = pathlib.Path(__file__).parent.absolute()
     tmp = os.path.join(current_path, "screenshot")
@@ -54,77 +41,75 @@ def get_savepath():
     return str_path
 
 
-def get_latest_screenshot():
-    list_dir = os.path.join(pathlib.Path(__file__).parent.absolute(), "screenshot")
-    return list_dir[-1]
+class Flaschenpost:
+    def __init__(self, list_beverage, run_background=True):
+        # Initialize browser
+        if run_background:
+            os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background if True
+        self.service_log_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver.log")
+        self.driver           = webdriver.Firefox(service_log_path=self.service_log_path)
+        self.wait             = WebDriverWait(self.driver, 10)
 
+        # Data
+        self.zipcode         = os.getenv('ZIPCODE')
+        self.zipcode_entered = False
+        self.list_beverage   = list_beverage
 
-def get_pricetrigger(name):
-    pricetrigger = 10000
-    if name == 'Volvic':
-        pricetrigger = 5
-    elif name == 'Spezi':
-        pricetrigger = 10
-    elif name == 'FritzKola':
-        pricetrigger = 18
-    return pricetrigger
+    def enter_zipcode(self):
+        if not self.zipcode_entered:
+            zipcode_input = self.wait.until(EC.presence_of_element_located((By.ID, "validZipcode")))
+            sleep(1)
+            zipcode_input.send_keys(self.zipcode)
+            sleep(1)
+            self.driver.find_element_by_class_name("fp-button").click()
+            sleep(2)
+            self.zipcode_entered = True
 
-
-def get_flaschenpost_price(name, url, background=True):
-    if background:
-        os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background
-    service_log_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver.log")
-    driver = webdriver.Firefox(service_log_path=service_log_path)
-    driver.get(url)
-    wait = WebDriverWait(driver, 10)
-    zipcode_input = wait.until(EC.presence_of_element_located((By.ID, "validZipcode")))
-    sleep(1)
-    zipcode_input.send_keys(os.getenv('ZIPCODE'))
-    sleep(1)
-    driver.find_element_by_class_name("fp-button").click()
-    sleep(1)
-
-    try:
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_price")))
-        pricedict = driver.find_elements_by_class_name("fp_article_price")
-
-        for price_idx in range(len(pricedict)):
-            current_price = pricedict[price_idx].text
+    def get_current_price(self, name):
+        self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_price")))
+        dict_price = self.driver.find_elements_by_class_name("fp_article_price")
+        list_current_price = []
+        for price_idx in range(len(dict_price)):
+            current_price = dict_price[price_idx].text
             print(name + ': ' + current_price)
             current_price = current_price.replace('€', '').strip()
             current_price = current_price.replace(',', '.').strip()
-            pricetrigger = get_pricetrigger(name)
-            if float(current_price) <= pricetrigger:
-                # Make screenshot
-                str_fpath = get_savepath()
-                driver.save_screenshot(str_fpath)
-                str_message = name + ': ' + str(current_price) + '€\n' + url
-                telegram_bot_sendtext(str_message)
-                telegram_bot_sendphoto(str_fpath)
-                break
-    except:
-        try:
-            str_avail = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_outOfStock")))
-            print(name + ': Out of Stock')
-        except TimeoutException as e:
-            telegram_bot_sendtext(str(e))
+            list_current_price.append(float(current_price))
+        list_current_price.sort()
+        return list_current_price[0]
 
-    driver.quit()
+    def get_screenshot(self):
+        str_fpath = get_savepath()
+        self.driver.save_screenshot(str_fpath)
+        return str_fpath
+
+    def run(self):
+        for name, url, pricetrigger in self.list_beverage:
+            self.driver.get(url)
+            self.enter_zipcode()
+            try:
+                current_price = self.get_current_price(name)
+                if current_price <= pricetrigger:
+                    screenshot  = self.get_screenshot()
+                    str_message = name + ': ' + str(current_price) + '€\n' + url
+                    telegram_bot_sendtext(str_message)
+                    telegram_bot_sendphoto(screenshot)
+            except:
+                try:
+                    self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_outOfStock")))
+                    print(name + ': Out of Stock')
+                except TimeoutException as e:
+                    telegram_bot_sendtext(str(e) + 'Timeout')
+        self.driver.quit()
 
 
 if __name__ == "__main__":
-    # Web Scraping
-    name_list = []
-    url_list  = []
-    name_list.append('Volvic')
-    url_list.append('https://www.flaschenpost.de/volvic/volvic-naturelle')
-    name_list.append('Spezi')
-    url_list.append('https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi')
-    name_list.append('FritzKola')
-    url_list.append('https://www.flaschenpost.de/fritz-kola/fritz-kola')
+    # (name, url, pricetrigger)
+    list_beverage = [('Volvic', 'https://www.flaschenpost.de/volvic/volvic-naturelle', 5),
+                     ('Spezi', 'https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi', 10),
+                     ('FritzKola', 'https://www.flaschenpost.de/fritz-kola/fritz-kola', 18)]
 
-    full_list = np.stack((name_list, url_list), axis=1)
-    for name, url in full_list:
-        get_flaschenpost_price(name, url, background=True)
+    flaschenpost = Flaschenpost(list_beverage=list_beverage, run_background=False)
+    flaschenpost.run()
 
     print('Finished scraping')
