@@ -189,12 +189,7 @@ Once everything is set up, you can just run the script and see what happens. <br
 
 <!-- CONTACT -->
 # Contact
-<p align="center">
-
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
-</p>
-
 
 Please share your thoughts and connect with me on [linkedin](https://linkedin.com/in/viet-anh-le-cong) 
 
