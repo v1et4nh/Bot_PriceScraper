@@ -47,7 +47,9 @@ class Flaschenpost:
         if run_background:
             os.environ['MOZ_HEADLESS'] = '1'  # Run Firefox in the background if True
         self.service_log_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver.log")
-        self.driver           = webdriver.Firefox(service_log_path=self.service_log_path)
+        self.geckodriver_path = os.path.join(pathlib.Path(__file__).parent.absolute(), "Geckodriver/geckodriver.exe")
+        self.driver           = webdriver.Firefox(executable_path=self.geckodriver_path,
+                                                  service_log_path=self.service_log_path)
         self.wait             = WebDriverWait(self.driver, 10)
 
         # Data
