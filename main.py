@@ -59,11 +59,11 @@ class Flaschenpost:
 
     def enter_zipcode(self):
         if not self.zipcode_entered:
-            zipcode_input = self.wait.until(EC.presence_of_element_located((By.ID, "validZipcode")))
+            zipcode_input = self.wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div[1]/div/div[2]/div/input")))
             sleep(1)
             zipcode_input.send_keys(self.zipcode)
             sleep(1)
-            self.driver.find_element_by_class_name("fp-button").click()
+            self.driver.find_element_by_xpath("/html/body/div[2]/div[1]/div/div[3]/div/button").click()
             sleep(2)
             self.zipcode_entered = True
 
