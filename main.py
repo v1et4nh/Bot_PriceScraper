@@ -3,6 +3,7 @@
 import requests
 import pathlib
 import os
+import telebot
 from datetime import datetime
 from time import sleep
 from selenium import webdriver
@@ -16,11 +17,13 @@ from dotenv import load_dotenv
 load_dotenv()
 bot_token = str(os.getenv('TELEGRAM_BOT_TOKEN'))    # Replace with your own bot_token
 bot_chatID = str(os.getenv('TELEGRAM_BOT_CHATID'))  # Replace with your own bot_chatID
+bot = telebot.TeleBot(bot_token)
 
 
 def telegram_bot_sendtext(bot_message):
     send_text  = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
     response = requests.get(send_text)
+    print(response)
     return response.json()
 
 
@@ -39,6 +42,13 @@ def get_savepath():
     filename = str_now + '.png'
     str_path = os.path.join(tmp, filename)
     return str_path
+
+
+def clear_savepath():
+    current_path = pathlib.Path(__file__).parent.absolute()
+    tmp = os.path.join(current_path, "screenshot")
+    for file in os.listdir(tmp):
+        os.remove(os.path.join(tmp, file))
 
 
 class Flaschenpost:
@@ -102,6 +112,30 @@ class Flaschenpost:
                     print(name + ': Out of Stock')
                 except TimeoutException as e:
                     telegram_bot_sendtext(str(e) + 'Timeout')
+        clear_savepath()
+        self.driver.quit()
+
+    def run_query(self, chatid):
+        for name, url, pricetrigger in self.list_beverage:
+            self.driver.get(url)
+            self.enter_zipcode()
+            tmp = self.get_screenshot()
+            screenshot = open(tmp, 'rb')
+            try:
+                current_price = self.get_current_price(name)
+                str_message = name + ': ' + str(current_price) + '€\n' + url
+                bot.send_message(chatid, str_message)
+                bot.send_photo(chatid, screenshot)
+            except:
+                try:
+                    self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, "fp_article_outOfStock")))
+                    str_message = name + ': Out of Stock'
+                    bot.send_message(chatid, str_message)
+                    bot.send_photo(chatid, screenshot)
+                except TimeoutException as e:
+                    bot.send_message(chatid, str(e) + 'Timeout')
+            screenshot.close()
+        clear_savepath()
         self.driver.quit()
 
 
@@ -111,7 +145,7 @@ if __name__ == "__main__":
                      ('Spezi', 'https://www.flaschenpost.de/paulaner-spezi/paulaner-spezi', 10),
                      ('FritzKola', 'https://www.flaschenpost.de/fritz-kola/fritz-kola', 18)]
 
-    flaschenpost = Flaschenpost(list_beverage=list_beverage, run_background=False)
+    flaschenpost = Flaschenpost(list_beverage=list_beverage, run_background=True)
     flaschenpost.run()
 
     print('Finished scraping')
